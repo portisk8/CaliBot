@@ -21,8 +21,10 @@ speech_config.speech_synthesis_language = config['AzureSpeechConfig']['SpeechSyn
 
 
 # Create and train the RAG model
-trainer = RAGTrainer(api_key=config['OpenAI']['ApiKey'], embedding_model=config['OpenAI']['EmbeddingModel'])
-trainer.train(config['ChromaDB']['TrainingDirectory'])
+have_to_train=config['ChromaDB']['Train']
+trainer = RAGTrainer(api_key=config['OpenAI']['ApiKey'], embedding_model=config['OpenAI']['EmbeddingModel'], have_to_train=have_to_train)
+if(have_to_train):
+    trainer.train(config['ChromaDB']['TrainingDirectory'])
 
 # Configure the language model
 llm = ChatOpenAI(model_name=config['OpenAI']['ChatModel'], openai_api_key=config['OpenAI']['ApiKey'])

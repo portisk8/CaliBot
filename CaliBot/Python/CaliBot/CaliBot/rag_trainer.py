@@ -9,10 +9,13 @@ from langchain_community.document_loaders.base import BaseLoader
 from langchain.docstore.document import Document
 
 class RAGTrainer:
-    def __init__(self, api_key: str, embedding_model: str = "text-embedding-ada-002"):
+    def __init__(self, api_key: str, embedding_model: str = "text-embedding-ada-002", have_to_train: bool = True):
         self.api_key = api_key
         self.embedding_model = embedding_model
         self.vectorstore = None
+        if(not have_to_train):
+            embeddings = OpenAIEmbeddings(openai_api_key=self.api_key)
+            self.vectorstore = Chroma(persist_directory=f"ChromaDB", embedding_function=embeddings)
 
     @staticmethod
     def load_text_with_error_handling(file_path):
@@ -77,7 +80,7 @@ class RAGTrainer:
         embeddings = OpenAIEmbeddings(openai_api_key=self.api_key)
 
         # Create vector database
-        self.vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
+        self.vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings, persist_directory=f"ChromaDB")
 
     def get_retriever(self, k: int = 3):
         if self.vectorstore is None:
