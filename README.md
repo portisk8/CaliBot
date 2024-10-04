@@ -45,6 +45,7 @@ Las preguntas y respuestas con las que se dialoga se obtienen de una base vector
 - Entrenamiento y recuperación: `rag_trainer.py`
 
 ### Flujo del Sistema
+Podemos considerar que no hay una máquina de estados con un flujo predeterminado que gestionar, pero podemos representar el funcionamiento de la siguiente manera:
 
 1. **Reconocimiento del Habla**: Conversión de voz a texto.
 2. **RAG**: Creación del prompt utilizando embeddings.
