@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CaliBot", "CaliBot\CaliBot.pyproj", "{C80AAE15-1F31-4D33-A19A-0C6E61644F94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C80AAE15-1F31-4D33-A19A-0C6E61644F94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C80AAE15-1F31-4D33-A19A-0C6E61644F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7062A17F-040A-429C-AD6E-0A5A41553C82}
+	EndGlobalSection
+EndGlobal
