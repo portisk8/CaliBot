@@ -10,6 +10,8 @@ from langchain.docstore.document import Document
 
 class RAGTrainer:
     def __init__(self, api_key: str, embedding_model: str = "text-embedding-ada-002"):
+        # el constructor por defecto toma un embedding, pero luego lo sobreescribe tomando
+        # el string existente en el appsettings
         self.api_key = api_key
         self.embedding_model = embedding_model
         self.vectorstore = None
@@ -64,6 +66,12 @@ class RAGTrainer:
                     documents.append(Document(page_content=content, metadata=metadata))
             return documents
 
+    '''
+    Este método es el que realiza la carga de TODOS los documentos de texto existentes 
+    a la base de datos de Chroma. En nuestro caso, en el directorio training_data,
+    volcamos un documento de QuestionAnswer.txt conteniendo las FAQ de la App
+    Esto permite dinamismo en el sistema de diáologo
+    '''
     def train(self, knowledge_base_path: str):
         # Load documents
         loader = DirectoryLoader(knowledge_base_path, glob=["**/*.md", "**/*.json","**/*.txt"], loader_cls=self.CustomLoader)
@@ -79,6 +87,11 @@ class RAGTrainer:
         # Create vector database
         self.vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
 
+    '''
+    Este método permite recuperar los vectores (embeddings) que serán utilizados al momento de "aumentar"
+    la capacidad del LLM, con datos propios
+    Los datos propios son los que se encuentran en la carpeta training_data (QuestionAnswer.txt)
+    '''
     def get_retriever(self, k: int = 3):
         if self.vectorstore is None:
             raise ValueError("You must train the model before getting a retriever.")
