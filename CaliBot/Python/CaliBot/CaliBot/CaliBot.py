@@ -43,6 +43,12 @@ PROMPT = PromptTemplate(
 )
 
 # Create the retrieval and answer chain
+'''
+En este método lo que se realiza es la implementación de un RAG,
+ya que se recupera (Retrieval) una respuesta que genera el LLM (Generative) 
+aumentando su capacidad (Augmentative) a partir de los embeddings (vectores) generados previamente
+Estos embeddings los generamos utilizando un documento de texto con preguntas y respuestas frecuentes
+'''
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
     chain_type="stuff",
